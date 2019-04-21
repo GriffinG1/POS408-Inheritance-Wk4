@@ -34,6 +34,16 @@ namespace Inheritance_Example
         {
             Console.WriteLine(cry);
         }
+
+        public string GetName()
+        {
+            return name;
+        }
+
+        public void SetName(string name)
+        {
+            this.name = name;
+        }
     }
 
     class Cat : Animal
