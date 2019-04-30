@@ -27,7 +27,7 @@ namespace Inheritance_Example
             sl.DeSerialize(f);
         }
 
-        void Serialize(Animal a)
+        void Serialize(Animal a) // Info taken from https://www.c-sharpcorner.com/article/serializing-objects-in-C-Sharp/
         {
             Stream s = File.Open("temp.dat", FileMode.Create);
             BinaryFormatter b = new BinaryFormatter();
