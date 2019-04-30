@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Inheritance_Example
 {
@@ -17,6 +16,32 @@ namespace Inheritance_Example
             Animal f = new Fish("George");
             f.Speak();
             Console.ReadLine();
+
+            Program sl = new Program();
+
+            sl.Serialize(c);
+            sl.DeSerialize(c);
+            sl.Serialize(d);
+            sl.DeSerialize(d);
+            sl.Serialize(f);
+            sl.DeSerialize(f);
+        }
+
+        void Serialize(Animal a)
+        {
+            Stream s = File.Open("temp.dat", FileMode.Create);
+            BinaryFormatter b = new BinaryFormatter();
+            b.Serialize(s, a);
+            s.Close();  
+        }
+
+        void DeSerialize(Animal a)
+        {
+            Stream s = File.Open("temp.dat", FileMode.Open);
+            BinaryFormatter b = new BinaryFormatter();
+            a = (Animal) b.Deserialize(s);
+            Console.WriteLine(a.name);
+            s.Close();
         }
     }
 
